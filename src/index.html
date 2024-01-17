@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landmark</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="side-menu">
+      <button id="swap-sheets" type="button" onclick="menu.swapSheets()">Swap</button>
+      <button id="open-map-sheet" type="button" onclick="menu.openSheets('map')">Map</button>
+      <button id="open-guild-sheet" type="button" onclick="menu.openSheets('guild')">Guild</button>
+    </div>
+    <section id="formations">
+      <div class="formation visible" id="map-formation">
+        <div class="border">
+          <img src="assets/sheet-border-2.png" alt="map-border">
+        </div>
+        <div class="sheet" id="map-sheet">
+          <img src="assets/map.png" alt="map">
+          <div id="cities-plane"></div>
+          <svg id="routes" viewBox="0 0 100 100">
+            
+          </svg>
+        </div>
+      </div>
+      <div class="formation hidden" id="guild-formation">
+        <div class="border" id="guild-border">
+          <img src="assets/guild-sheet-border.png" alt="guild-border">
+        </div>
+        <div class="sheet">
+          <img src="assets/guild-sheet.png" alt="guild">
+        </div>
+      </div>
+    </section>
+    <p id="coordinates"></p>
+  </body>  
+</html>

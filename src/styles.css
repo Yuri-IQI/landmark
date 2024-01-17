@@ -1,0 +1,143 @@
+body {
+  background-image: url('../assets/board.jpg');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  display: flex;
+  justify-content: flex-end;
+  height: 100vh;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+img {
+  width: 100%;
+}
+
+.side-menu {
+  position: absolute;
+  translate: -50% -50%;
+  left: 0;
+  top: 50%;
+  background-color: #343434;
+  width: 8rem;
+  height: 24rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  border: 2px solid black;
+  border-radius: 16px;
+  padding: 0.4vh;
+  box-shadow: -2px 8px 10px 2px black;
+}
+
+.side-menu button {
+  padding: 5%;
+  border: 2px dashed white;
+  border-radius: 8px;
+  width: 45%;
+  background-color: #7d7d7d;
+  color: white;
+  text-shadow: -2px 2px 8px black;
+  box-shadow: -2px 2px 8px black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.side-menu button:hover {
+  background-color: #a9895e;
+}
+
+#formations {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+.formation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+  position: relative;
+  min-width: 400px;
+}
+
+.visible {
+  display: flex;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.sheet {
+  position: relative;
+  display: flex;
+  mask-image: url(assets/sheet-border-filled.png);
+  mask-size: 100% 100%;
+}
+
+.border {
+  display: flex;
+  width: 103%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+}
+
+#guild-border {
+  width: 99.4%;
+}
+
+#coordinates {
+  color: white;
+  position: absolute;
+}
+
+#cities-plane {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#cities-plane img {
+  width: 5%;
+  transform: translate(-50%, -50%);
+}
+
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+@media (max-width: 592px) {
+  .side-menu {
+    left: 50%;
+    top: 100%;
+    width: 60%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    z-index: 1;
+  }
+  .side-menu button {
+    padding: 2%;
+    width: 25%;
+    height: 36%;
+    font-size: 24px;
+  }
+  #formations {
+    width: 100%;
+  }
+}
