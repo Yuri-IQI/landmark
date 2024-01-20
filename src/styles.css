@@ -109,6 +109,7 @@ img {
 #cities-plane img {
   width: 5%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 svg {
@@ -140,4 +141,4 @@ svg {
   #formations {
     width: 100%;
   }
-}
+}}

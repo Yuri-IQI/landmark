@@ -1,6 +1,7 @@
 export class Intermediary {
   constructor() {
     this.cityData;
+    this.routesData;
   }
 
   async fetchCityData() {
@@ -15,10 +16,17 @@ export class Intermediary {
     }
   }
 
-  async sendPoints(routesData) {
-    for (let route in routesData) {
-      routesData[route][2] = await window.__TAURI__.tauri.invoke('measure_routes', { routePoints: routesData[route][0] });
+  async sendRoutesData(routesData, communicate) {
+    for (let i in routesData) {
+      if (routesData[i][2] === undefined) {
+        routesData[i].push(0);
+      }      
     }
+    const updatedRoutesData = await window.__TAURI__.tauri.invoke('manage_routes_data', { routesData, communicate });
   }
 
+  async getRoutesData() {
+    let communicate = false;
+    this.routesData = await window.__TAURI__.tauri.invoke('exchange_routes_data', { communicate });
+  }
 }
