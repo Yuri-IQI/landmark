@@ -28,7 +28,6 @@ class City {
   findCityConnections(city, img) {
     const tolerance = 0.01;
   
-    // Use 'const' instead of 'let' for variables that won't be reassigned
     for (const routeId in intermediary.routesData) {
       const path = intermediary.routesData[routeId];
   
@@ -37,11 +36,9 @@ class City {
         const [pointX, pointY] = point.map(Number);
   
         if (Math.abs(cityX - pointX) < tolerance && Math.abs(cityY - pointY) < tolerance) {
-          // Use the logical OR operator to simplify the initialization of cityConnections[routeId]
           this.cityConnections[routeId] = this.cityConnections[routeId] || new Set();
           this.cityConnections[routeId].add([city[0], city[2]]);
   
-          // Use the logical OR operator to simplify the initialization of city[3]
           city[3] = city[3] || [];
   
           if (!city[3].includes(routeId)) {
@@ -305,7 +302,7 @@ class Menu {
   }
 }
 
-var allCoordinates = [];
+/*var allCoordinates = [];
 
 function getMapCoordinates(event) {
   var mapSheet = document.getElementById("map-sheet");
@@ -321,7 +318,7 @@ function getMapCoordinates(event) {
 document.getElementById("map-sheet").addEventListener("click", function(e) {
   getMapCoordinates(e);
   window.coords = allCoordinates;
-});
+});*/
 
 window.onload = async function() {
   const city = new City();

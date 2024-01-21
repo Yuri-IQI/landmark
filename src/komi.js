@@ -1,3 +1,5 @@
+const { invoke } = window.__TAURI__.tauri;
+
 export class Intermediary {
   constructor() {
     this.cityData;
@@ -6,7 +8,7 @@ export class Intermediary {
 
   async fetchCityData() {
     try {
-      const rawData = await window.__TAURI__.tauri.invoke('get_city_data');
+      const rawData = await invoke('get_city_data');
       this.cityData = rawData.map(cityString => {
         const parts = cityString.split('-');
         return [parseInt(parts[0].trim()), parts[1].trim(), JSON.parse(parts[2].trim())];
@@ -22,11 +24,11 @@ export class Intermediary {
         routesData[i].push(0);
       }      
     }
-    const updatedRoutesData = await window.__TAURI__.tauri.invoke('manage_routes_data', { routesData, communicate });
+    const updatedRoutesData = await invoke('manage_routes_data', { routesData, communicate });
   }
 
   async getRoutesData() {
     let communicate = false;
-    this.routesData = await window.__TAURI__.tauri.invoke('exchange_routes_data', { communicate });
+    this.routesData = await invoke('exchange_routes_data', { communicate });
   }
 }
