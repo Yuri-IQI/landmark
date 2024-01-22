@@ -1,4 +1,38 @@
-import { Intermediary } from './komi.js'
+const { invoke } = window.__TAURI__.tauri;
+
+class Intermediary {
+    constructor() {
+        this.cityData;
+        this.routesData;
+    }
+
+    async fetchCityData() {
+        try {
+        const rawData = await invoke('get_city_data');
+        this.cityData = rawData.map(cityString => {
+            const parts = cityString.split('-');
+            return [parseInt(parts[0].trim()), parts[1].trim(), JSON.parse(parts[2].trim())];
+        });
+        } catch (error) {
+            console.error('Failed to fetch city data:', error); 
+        }
+    }
+
+    async sendRoutesData(routesData, communicate) {
+        for (let i in routesData) {
+            if (routesData[i][2] === undefined) {
+                routesData[i].push(0);
+            }      
+        }
+        const updatedRoutesData = await invoke('manage_routes_data', { routesData, communicate });
+    }
+
+    async getRoutesData() {
+        let communicate = false;
+        this.routesData = await invoke('exchange_routes_data', { communicate });
+    }
+}
+
 const intermediary = new Intermediary();
 await intermediary.fetchCityData();
 await intermediary.getRoutesData();
@@ -321,11 +355,11 @@ document.getElementById("map-sheet").addEventListener("click", function(e) {
 });*/
 
 window.onload = async function() {
-  const city = new City();
-  city.displayCities();
+    const city = new City();
+    city.displayCities();
 
-  const routes = new Routes();
-  routes.preSetRoutes();
+    const routes = new Routes();
+    routes.preSetRoutes();
 
-  window.menu = new Menu();
+    window.menu = new Menu();
 }
